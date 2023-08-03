@@ -41,14 +41,14 @@ class MainActivity : AppCompatActivity() {
             retrofit.getData()
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe()
+                .subscribe(this::handleResponse)
         )
+        println("Salam")
     }
 
     private fun handleResponse(weather: Model) {
         val currentWeather = weather
-        currentWeather.let {
-            binding.textView.text = it.havanin_veziyyeti
+        currentWeather?.let {
         }
     }
 
