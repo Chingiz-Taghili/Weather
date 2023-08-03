@@ -1,8 +1,9 @@
 package com.cingiztagili.weather.view
 
+import android.opengl.Visibility
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import com.cingiztagili.weather.R
+import android.view.View
 import com.cingiztagili.weather.databinding.ActivityMainBinding
 import com.cingiztagili.weather.model.Model
 import com.cingiztagili.weather.service.ServiceAPI
@@ -15,7 +16,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
-    private val BASE_URL = "http://api.weatherapi.com/"
+    private val BASE_URL = "https://api.weatherapi.com/"
 
     private var compositeDisposable: CompositeDisposable? = null
 
@@ -41,14 +42,21 @@ class MainActivity : AppCompatActivity() {
             retrofit.getData()
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(this::handleResponse)
+                .doOnError (this::handleError)
+                .subscribe(this::handleResponse) { e -> println("onError ${e.localizedMessage}") }
         )
-        println("Salam")
+    }
+
+    private fun handleError(ex: Throwable) {
+        println(ex.localizedMessage)
     }
 
     private fun handleResponse(weather: Model) {
-        val currentWeather = weather
-        currentWeather?.let {
+        weather.let {
+            binding.progressBar.visibility = View.GONE
+            binding.textView.visibility = View.VISIBLE
+            binding.textView.text = it.location.menteqe
+            println(it.current.condition.havanin_veziyyeti)
         }
     }
 
