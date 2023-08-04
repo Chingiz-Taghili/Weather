@@ -54,9 +54,12 @@ class MainActivity : AppCompatActivity() {
     private fun handleResponse(weather: Model) {
         weather.let {
             binding.progressBar.visibility = View.GONE
-            binding.textView.visibility = View.VISIBLE
-            binding.textView.text = it.location.menteqe
-            println(it.current.condition.havanin_veziyyeti)
+            binding.nameText.visibility = View.VISIBLE
+            binding.nameText.text = it.location.menteqe
+            binding.currentTemperaturText.text = "${it.current.temperatur}"
+            binding.currentConditionText.text = it.current.condition.havanin_veziyyeti
+            binding.dailyMaxMinTemp.text = "${it.forecast.gunluk_proqnoz.get(1).gunluk_umumi.maks_temp} / ${it.forecast.gunluk_proqnoz.get(1).gunluk_umumi.min_temp}"
+
         }
     }
 

@@ -16,15 +16,106 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:visibility="gone"
-        android:id="@+id/textView"
-        android:layout_width="158dp"
-        android:layout_height="48dp"
-        android:text="test"
-        android:textSize="24sp"
+        android:id="@+id/nameText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="55dp"
+        android:layout_marginTop="30dp"
+        android:text="Name"
+        android:textSize="32sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/currentTemperaturText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="25dp"
+        android:layout_marginTop="20dp"
+        android:text="C"
+        android:textSize="61sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/nameText" />
+
+    <TextView
+        android:id="@+id/dailyMaxMinTemp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="19dp"
+        android:text="max/min"
+        android:textSize="16sp"
+        app:layout_constraintStart_toEndOf="@+id/currentTemperaturText"
+        app:layout_constraintTop_toTopOf="@+id/currentTemperaturText" />
+
+    <TextView
+        android:id="@+id/currentConditionText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Condition"
+        android:textSize="22sp"
+        app:layout_constraintStart_toStartOf="@+id/dailyMaxMinTemp"
+        app:layout_constraintTop_toBottomOf="@+id/dailyMaxMinTemp" />
+
+    <ImageView
+        android:id="@+id/currentIcon"
+        android:layout_width="82dp"
+        android:layout_height="0dp"
+        android:layout_marginEnd="25dp"
+        app:layout_constraintBottom_toBottomOf="@+id/currentTemperaturText"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/currentTemperaturText"
+        app:srcCompat="@drawable/ic_launcher_background" />
+
+    <RelativeLayout
+        android:id="@+id/scrollView"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="7dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"/>
+        app:layout_constraintTop_toBottomOf="@+id/currentTemperaturText">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/saatliqRecyclerView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:orientation="horizontal" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/gunlukRecyclerView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/saatliqRecyclerView"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="25dp"
+            android:layout_marginRight="20dp"
+            android:orientation="vertical" />
+
+        <ImageView
+            android:id="@+id/uvIndeksiIcon"
+            android:layout_width="160dp"
+            android:layout_height="160dp"
+            android:layout_below="@+id/gunlukRecyclerView"
+            android:layout_alignStart="@+id/gunlukRecyclerView"
+            android:layout_marginStart="0dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginEnd="155dp"
+            app:srcCompat="@drawable/ic_launcher_background" />
+
+        <ImageView
+            android:id="@+id/uvIndeksiIcon3"
+            android:layout_width="160dp"
+            android:layout_height="160dp"
+            android:layout_below="@+id/gunlukRecyclerView"
+            android:layout_alignEnd="@+id/gunlukRecyclerView"
+            android:layout_marginTop="20dp"
+            android:layout_marginEnd="0dp"
+            app:srcCompat="@drawable/ic_launcher_background" />
+
+    </RelativeLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
