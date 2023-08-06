@@ -10,14 +10,19 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:text="time"
-        android:layout_marginBottom="3dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="4dp"
+        android:layout_marginRight="6dp"
+        android:layout_marginLeft="6dp"
         android:textSize="14sp"/>
 
     <ImageView
         android:id="@+id/iconSaatliqRecyclerView"
-        android:layout_width="match_parent"
-        android:layout_height="34dp"
+        android:layout_width="39dp"
+        android:layout_height="39dp"
         android:layout_gravity="center"
+        android:layout_marginLeft="6dp"
+        android:layout_marginRight="6dp"
         android:src="@drawable/ic_launcher_background" />
 
     <TextView
@@ -25,16 +30,41 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:textSize="18sp"
-        android:layout_marginBottom="3dp"
+        android:textSize="19sp"
+        android:layout_marginBottom="4dp"
+        android:layout_marginRight="6dp"
+        android:layout_marginLeft="6dp"
         android:text="00C"/>
 
-    <TextView
-        android:id="@+id/rutubetSaatliqRecyclerView"
+
+
+    <LinearLayout
+        android:id="@+id/rainLinearLayout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:text="rut"
-        android:textSize="14sp"/>
+        android:layout_marginRight="5dp"
+        android:layout_marginLeft="5dp"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:id="@+id/dropSaatliqRecyclerView"
+            android:layout_width="12dp"
+            android:layout_height="12dp"
+            android:layout_gravity="center"
+            android:src="@drawable/drop1"/>
+
+
+        <TextView
+            android:id="@+id/rainSaatliqRecyclerView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:layout_marginLeft="1dp"
+            android:text="yag"
+            android:textSize="13sp"/>
+
+    </LinearLayout>
 
 </LinearLayout>

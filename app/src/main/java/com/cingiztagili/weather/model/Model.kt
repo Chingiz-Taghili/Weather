@@ -40,7 +40,7 @@ data class Current(
     @SerializedName("feelslike_c")
     val real_hissetme: Double,
     @SerializedName("uv")
-    val uv_indeksi: Double
+    val uv_indeksi: Double //8.0
 )
 
 data class Condition(
@@ -57,7 +57,7 @@ data class Forecast(
 
 data class BirGunUcun(
     @SerializedName("date")
-    val tarix: String,
+    val tarix: String, //"2023-08-05"
     @SerializedName("day")
     val gunluk_umumi: GunlukUmumi,
     @SerializedName("astro")
@@ -79,14 +79,14 @@ data class GunlukUmumi(
 
 data class Astronomik(
     @SerializedName("sunrise")
-    val sefeq: String,
+    val sefeq: String, //"05:41 AM"
     @SerializedName("sunset")
-    val qurub: String
+    val qurub: String //"07:51 PM"
 )
 
 data class HerSaatUcun(
     @SerializedName("time")
-    val tarix_ve_vaxt: String,
+    val tarix_ve_vaxt: String, //"2023-08-05 00:00"
     @SerializedName("temp_c")
     val temperatur: Double,
     @SerializedName("condition")
@@ -100,5 +100,7 @@ data class HerSaatUcun(
     @SerializedName("feelslike_c")
     val real_hissetme: Double,
     @SerializedName("uv")
-    val uv_indeksi: Double
+    val uv_indeksi: Double,
+    @SerializedName("will_it_rain")
+    val yagis_ehtimali: Int
 )
