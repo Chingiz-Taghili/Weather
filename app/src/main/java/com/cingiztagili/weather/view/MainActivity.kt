@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.view.View
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.cingiztagili.weather.adapter.GunlukAdapter
 import com.cingiztagili.weather.adapter.SaatliqAdapter
 import com.cingiztagili.weather.databinding.ActivityMainBinding
 import com.cingiztagili.weather.model.HerSaatUcun
@@ -72,8 +73,14 @@ class MainActivity : AppCompatActivity() {
 
             val saatliqList = it.forecast.gunluk_proqnoz.get(0).saatliq_proqnoz
             binding.saatliqRecyclerView.layoutManager = LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
-            val adapter = SaatliqAdapter(saatliqList)
-            binding.saatliqRecyclerView.adapter = adapter
+            val saatliqAdapter = SaatliqAdapter(saatliqList)
+            binding.saatliqRecyclerView.adapter = saatliqAdapter
+
+
+            val gunlukList = it.forecast.gunluk_proqnoz
+            binding.gunlukRecyclerView.layoutManager = LinearLayoutManager(this)
+            val gunlukAdapter = GunlukAdapter(gunlukList)
+            binding.gunlukRecyclerView.adapter = gunlukAdapter
         }
     }
 

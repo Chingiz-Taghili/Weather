@@ -73,6 +73,8 @@ data class GunlukUmumi(
     val min_temp: Double,
     @SerializedName("avghumidity")
     val ortalama_rutubet: Double,
+    @SerializedName("daily_will_it_rain")
+    val yagis_ehtimali: Int,
     @SerializedName("condition")
     val condition: Condition
 )

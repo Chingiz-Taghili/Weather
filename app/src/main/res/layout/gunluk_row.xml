@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <TextView
+        android:id="@+id/weekDayGunlukRecyclerView"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="7dp"
+        android:layout_marginTop="-2dp"
+        android:layout_marginEnd="10dp"
+        android:layout_toStartOf="@+id/linear"
+        android:text="day of the week"
+        android:textSize="17sp"
+        app:layout_constraintEnd_toStartOf="@+id/linear"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/linear" />
+
+    <LinearLayout
+        android:id="@+id/linear"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="12dp"
+        android:layout_marginEnd="12dp"
+        android:layout_toStartOf="@+id/iconGunlukRecyclerView"
+        android:gravity="center"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toStartOf="@+id/iconGunlukRecyclerView"
+        app:layout_constraintTop_toTopOf="@+id/iconGunlukRecyclerView">
+
+        <ImageView
+            android:id="@+id/dropGunlukRecyclerView"
+            android:layout_width="10dp"
+            android:layout_height="10dp"
+            android:src="@drawable/drop3" />
+
+        <TextView
+            android:id="@+id/rainGunlukRecyclerView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="1dp"
+            android:text="yag"
+            android:textSize="13sp" />
+
+    </LinearLayout>
+
+    <ImageView
+        android:id="@+id/iconGunlukRecyclerView"
+        android:layout_width="43dp"
+        android:layout_height="43dp"
+        android:layout_alignTop="@+id/maxMinTempGunlukRecyclerView"
+        android:layout_marginTop="5dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginBottom="5dp"
+        android:layout_toStartOf="@+id/maxMinTempGunlukRecyclerView"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/maxMinTempGunlukRecyclerView"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/ic_launcher_background" />
+
+    <TextView
+        android:id="@+id/maxMinTempGunlukRecyclerView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="false"
+        android:layout_alignParentEnd="false"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="6dp"
+        android:text="max-min"
+        android:textSize="19sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/iconGunlukRecyclerView" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

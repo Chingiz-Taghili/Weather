@@ -22,7 +22,7 @@
         android:layout_marginStart="55dp"
         android:layout_marginTop="30dp"
         android:text="Name"
-        android:textSize="34sp"
+        android:textSize="40sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -31,9 +31,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="25dp"
-        android:layout_marginTop="17dp"
+        android:layout_marginTop="15dp"
         android:text="C"
-        android:textSize="61sp"
+        android:textSize="69sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/nameText" />
 
@@ -41,7 +41,7 @@
         android:id="@+id/dailyMaxMinTemp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="15dp"
+        android:layout_marginStart="12dp"
         android:layout_marginTop="19dp"
         android:text="max/min"
         android:textSize="16sp"
@@ -53,72 +53,142 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Condition"
-        android:textSize="22sp"
+        android:textSize="24sp"
         app:layout_constraintStart_toStartOf="@+id/dailyMaxMinTemp"
         app:layout_constraintTop_toBottomOf="@+id/dailyMaxMinTemp" />
 
     <ImageView
         android:id="@+id/currentIcon"
-        android:layout_width="82dp"
+        android:layout_width="122dp"
         android:layout_height="0dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginEnd="25dp"
-        android:layout_marginBottom="-10dp"
+        android:layout_marginTop="-16dp"
+        android:layout_marginEnd="13dp"
+        android:layout_marginBottom="-14dp"
         app:layout_constraintBottom_toBottomOf="@+id/currentTemperaturText"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@+id/currentTemperaturText"
         app:srcCompat="@drawable/ic_launcher_background" />
 
+    <ScrollView
+        android:id="@+id/scrollView"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="7dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/currentTemperaturText">
+
 
         <RelativeLayout
-            android:id="@+id/scrollView"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:layout_marginTop="7dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/currentTemperaturText">
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
 
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/saatliqRecyclerView"
+            <LinearLayout
+                android:id="@+id/saatliqLinearLayout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="20dp"
                 android:layout_marginRight="20dp"
-                android:orientation="horizontal" />
+                android:orientation="vertical"
+                android:background="@drawable/shape">
 
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/gunlukRecyclerView"
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="6dp"
+                    android:layout_marginLeft="7dp"
+                    android:layout_marginRight="7dp"
+                    android:layout_marginTop="8dp"
+                    android:text="Hourly Forecast"
+                    android:textSize="19sp"
+                    android:textStyle="bold" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/saatliqRecyclerView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/gunlukLinearLayout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/saatliqRecyclerView"
                 android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:orientation="vertical"
+                android:layout_below="@+id/saatliqLinearLayout"
                 android:layout_marginTop="25dp"
-                android:layout_marginRight="20dp"
-                android:orientation="vertical" />
+                android:background="@drawable/shape">
 
-            <ImageView
-                android:id="@+id/uvIndeksiIcon"
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="7dp"
+                    android:layout_marginRight="7dp"
+                    android:layout_marginTop="8dp"
+                    android:text="Weekly Forecast"
+                    android:textSize="19sp"
+                    android:textStyle="bold" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/gunlukRecyclerView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/uvIndexLinearLayout"
                 android:layout_width="160dp"
                 android:layout_height="160dp"
-                android:layout_below="@+id/gunlukRecyclerView"
-                android:layout_alignStart="@+id/gunlukRecyclerView"
+                android:layout_below="@+id/gunlukLinearLayout"
+                android:layout_alignStart="@+id/gunlukLinearLayout"
                 android:layout_marginStart="0dp"
-                android:layout_marginTop="20dp"
-                android:layout_marginEnd="155dp"
-                app:srcCompat="@drawable/ic_launcher_background" />
+                android:layout_marginTop="25dp"
+                android:orientation="vertical">
 
-            <ImageView
-                android:id="@+id/uvIndeksiIcon3"
+                <ImageView
+                    android:layout_width="17dp"
+                    android:layout_height="17dp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+            </LinearLayout>
+
+            <LinearLayout
                 android:layout_width="160dp"
                 android:layout_height="160dp"
-                android:layout_below="@+id/gunlukRecyclerView"
-                android:layout_alignEnd="@+id/gunlukRecyclerView"
-                android:layout_marginTop="20dp"
-                android:layout_marginEnd="0dp"
-                app:srcCompat="@drawable/ic_launcher_background" />
+                android:layout_below="@+id/uvIndexLinearLayout"
+                android:layout_alignTop="@+id/uvIndexLinearLayout"
+                android:layout_alignEnd="@+id/gunlukLinearLayout"
+                android:layout_marginStart="0dp"
+                android:layout_marginTop="0dp"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:layout_width="17dp"
+                    android:layout_height="17dp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+            </LinearLayout>
 
         </RelativeLayout>
-
+    </ScrollView>
 </androidx.constraintlayout.widget.ConstraintLayout>
