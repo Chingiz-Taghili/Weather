@@ -8,6 +8,7 @@
 
     <ProgressBar
         android:id="@+id/progress_bar"
+        style="@android:style/Widget.Holo.Light.ProgressBar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -149,23 +150,36 @@
                 android:layout_alignStart="@+id/gunlukLinearLayout"
                 android:layout_marginStart="0dp"
                 android:layout_marginTop="25dp"
-                android:orientation="vertical">
+                android:gravity="center"
+                android:orientation="vertical"
+                android:background="@drawable/shape">
 
                 <ImageView
-                    android:layout_width="17dp"
-                    android:layout_height="17dp" />
+                    android:id="@+id/uvIndexIcon"
+                    android:layout_width="47dp"
+                    android:layout_height="47dp"
+                    android:layout_margin="10dp"
+                    android:src="@drawable/sun"/>
 
                 <TextView
+                    android:id="@+id/uvIndexText"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" />
+                    android:layout_height="wrap_content"
+                    android:text="UV index"
+                    android:textSize="20sp"/>
 
                 <TextView
+                    android:id="@+id/uvIndexDegree"
+                    android:layout_margin="6dp"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" />
+                    android:layout_height="wrap_content"
+                    android:text="UV degree"
+                    android:textSize="16sp"/>
 
             </LinearLayout>
 
             <LinearLayout
+                android:id="@+id/humidityLinearLayout"
                 android:layout_width="160dp"
                 android:layout_height="160dp"
                 android:layout_below="@+id/uvIndexLinearLayout"
@@ -173,19 +187,53 @@
                 android:layout_alignEnd="@+id/gunlukLinearLayout"
                 android:layout_marginStart="0dp"
                 android:layout_marginTop="0dp"
-                android:orientation="vertical">
+                android:gravity="center"
+                android:orientation="vertical"
+                android:background="@drawable/shape">
 
                 <ImageView
-                    android:layout_width="17dp"
-                    android:layout_height="17dp" />
+                    android:id="@+id/humidityIcon"
+                    android:layout_width="47dp"
+                    android:layout_height="47dp"
+                    android:layout_margin="10dp"
+                    android:src="@drawable/humidity"/>
 
                 <TextView
+                    android:id="@+id/humidityText"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" />
+                    android:layout_height="wrap_content"
+                    android:text="Humidity"
+                    android:textSize="20sp"/>
 
                 <TextView
+                    android:id="@+id/humidityDegree"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" />
+                    android:layout_height="wrap_content"
+                    android:layout_margin="6dp"
+                    android:text="Humidity deg"
+                    android:textSize="16sp"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/windLinearLayout"
+                android:layout_width="160dp"
+                android:layout_height="160dp"
+                android:background="@drawable/shape"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:layout_below="@+id/uvIndexLinearLayout"
+                android:layout_alignStart="@+id/uvIndexLinearLayout"
+                android:layout_marginStart="0dp"
+                android:layout_marginTop="25dp">
+
+                <ImageView
+                    android:id="@+id/windIcon"
+                    android:layout_width="47dp"
+                    android:layout_height="47dp"
+                    android:layout_margin="10dp"
+                    android:src="@drawable/wind2"/>
+
 
             </LinearLayout>
 

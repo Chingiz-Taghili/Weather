@@ -4,6 +4,7 @@ import android.opengl.Visibility
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
+import android.widget.Toast
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.cingiztagili.weather.adapter.GunlukAdapter
@@ -55,32 +56,56 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun handleError(ex: Throwable) {
-        println(ex.localizedMessage)
+        Toast.makeText(this@MainActivity, ex.localizedMessage, Toast.LENGTH_SHORT).show()
     }
 
     private fun handleResponse(weather: Model) {
         weather.let {
             binding.progressBar.visibility = View.GONE
+
             binding.nameText.visibility = View.VISIBLE
             binding.nameText.text = it.location.menteqe
+
+            binding.currentTemperaturText.visibility = View.VISIBLE
             binding.currentTemperaturText.text = "${it.current.temperatur.roundToInt()}°"
+
+            binding.currentConditionText.visibility = View.VISIBLE
             binding.currentConditionText.text = it.current.condition.havanin_veziyyeti
+
+            binding.dailyMaxMinTemp.visibility = View.VISIBLE
             binding.dailyMaxMinTemp.text =
                 "${it.forecast.gunluk_proqnoz.get(0).gunluk_umumi.maks_temp.roundToInt()}° / ${
                     it.forecast.gunluk_proqnoz.get(0).gunluk_umumi.min_temp.roundToInt()
                 }°"
+
+            binding.currentIcon.visibility = View.VISIBLE
             Picasso.get().load("https:${it.current.condition.icon}").into(binding.currentIcon)
 
-            val saatliqList = it.forecast.gunluk_proqnoz.get(0).saatliq_proqnoz
-            binding.saatliqRecyclerView.layoutManager = LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
-            val saatliqAdapter = SaatliqAdapter(saatliqList)
-            binding.saatliqRecyclerView.adapter = saatliqAdapter
+            binding.scrollView.visibility = View.VISIBLE
 
+            binding.saatliqRecyclerView.layoutManager =
+                LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
+            binding.saatliqRecyclerView.adapter =
+                SaatliqAdapter(it.forecast.gunluk_proqnoz.get(0).saatliq_proqnoz)
 
-            val gunlukList = it.forecast.gunluk_proqnoz
             binding.gunlukRecyclerView.layoutManager = LinearLayoutManager(this)
-            val gunlukAdapter = GunlukAdapter(gunlukList)
-            binding.gunlukRecyclerView.adapter = gunlukAdapter
+            binding.gunlukRecyclerView.adapter = GunlukAdapter(it.forecast.gunluk_proqnoz)
+
+
+            var uvIndexDegree = "Low"
+            if (it.current.uv_indeksi.roundToInt() >= 3 && it.current.uv_indeksi.roundToInt() <= 5) {
+                uvIndexDegree = "Moderate"
+            } else if (it.current.uv_indeksi.roundToInt() >= 6 && it.current.uv_indeksi.roundToInt() <= 7) {
+                uvIndexDegree = "High"
+            } else if (it.current.uv_indeksi.roundToInt() >= 8 && it.current.uv_indeksi.roundToInt() <= 10) {
+                uvIndexDegree = "Very High"
+            } else if (it.current.uv_indeksi.roundToInt() >= 11) {
+                uvIndexDegree = "Extreme"
+            }
+            binding.uvIndexDegree.text = uvIndexDegree
+
+
+            binding.humidityDegree.text = "${it.current.rutubet}%"
         }
     }
 
