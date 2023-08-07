@@ -4,7 +4,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:background="#333959">
 
     <TextView
         android:id="@+id/weekDayGunlukRecyclerView"
@@ -18,6 +19,7 @@
         android:layout_toStartOf="@+id/linear"
         android:text="day of the week"
         android:textSize="17sp"
+        android:textColor="@color/white"
         app:layout_constraintEnd_toStartOf="@+id/linear"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/linear" />
@@ -47,7 +49,8 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="1dp"
             android:text="yag"
-            android:textSize="13sp" />
+            android:textSize="13sp"
+            android:textColor="#88FFFFFF"/>
 
     </LinearLayout>
 
@@ -75,6 +78,7 @@
         android:layout_marginEnd="6dp"
         android:text="max-min"
         android:textSize="19sp"
+        android:textColor="@color/white"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@+id/iconGunlukRecyclerView" />
 

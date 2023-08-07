@@ -106,6 +106,10 @@ class MainActivity : AppCompatActivity() {
 
 
             binding.humidityDegree.text = "${it.current.rutubet}%"
+
+            binding.windDegree.text = "${it.current.kuleyin_sureti.roundToInt()} km/h"
+
+            binding.feelsLikeDegree.text = "${it.current.real_hissetme.roundToInt()}°"
         }
     }
 

@@ -3,7 +3,8 @@
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:gravity="center"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:background="#333959">
 
     <TextView
         android:id="@+id/saatSaatliqRecyclerView"
@@ -15,7 +16,8 @@
         android:layout_marginBottom="2dp"
         android:layout_marginRight="6dp"
         android:layout_marginLeft="6dp"
-        android:textSize="14sp"/>
+        android:textSize="14sp"
+        android:textColor="@color/white"/>
 
     <ImageView
         android:id="@+id/iconSaatliqRecyclerView"
@@ -35,7 +37,8 @@
         android:layout_marginBottom="4dp"
         android:layout_marginRight="6dp"
         android:layout_marginLeft="6dp"
-        android:text="00C"/>
+        android:text="00C"
+        android:textColor="@color/white"/>
 
 
 
@@ -66,7 +69,8 @@
             android:gravity="center"
             android:layout_marginLeft="1dp"
             android:text="yag"
-            android:textSize="13sp"/>
+            android:textSize="13sp"
+            android:textColor="#88FFFFFF"/>
 
     </LinearLayout>
 

@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".view.MainActivity">
+    tools:context=".view.MainActivity"
+    android:background="#0084BF">
 
     <ProgressBar
         android:id="@+id/progress_bar"
@@ -24,6 +25,7 @@
         android:layout_marginTop="30dp"
         android:text="Name"
         android:textSize="40sp"
+        android:textColor="@color/white"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -35,6 +37,7 @@
         android:layout_marginTop="15dp"
         android:text="C"
         android:textSize="69sp"
+        android:textColor="@color/white"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/nameText" />
 
@@ -46,6 +49,7 @@
         android:layout_marginTop="19dp"
         android:text="max/min"
         android:textSize="16sp"
+        android:textColor="@color/white"
         app:layout_constraintStart_toEndOf="@+id/currentTemperaturText"
         app:layout_constraintTop_toTopOf="@+id/currentTemperaturText" />
 
@@ -55,6 +59,7 @@
         android:layout_height="wrap_content"
         android:text="Condition"
         android:textSize="24sp"
+        android:textColor="@color/white"
         app:layout_constraintStart_toStartOf="@+id/dailyMaxMinTemp"
         app:layout_constraintTop_toBottomOf="@+id/dailyMaxMinTemp" />
 
@@ -74,7 +79,7 @@
         android:id="@+id/scrollView"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_marginTop="7dp"
+        android:layout_marginTop="8dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -91,17 +96,19 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="20dp"
                 android:layout_marginRight="20dp"
-                android:orientation="vertical"
-                android:background="@drawable/shape">
+                android:layout_marginTop="10dp"
+                android:background="@drawable/shape"
+                android:orientation="vertical">
 
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="6dp"
                     android:layout_marginLeft="7dp"
-                    android:layout_marginRight="7dp"
                     android:layout_marginTop="8dp"
+                    android:layout_marginRight="7dp"
+                    android:layout_marginBottom="6dp"
                     android:text="Hourly Forecast"
+                    android:textColor="@color/white"
                     android:textSize="19sp"
                     android:textStyle="bold" />
 
@@ -132,6 +139,7 @@
                     android:layout_marginTop="8dp"
                     android:text="Weekly Forecast"
                     android:textSize="19sp"
+                    android:textColor="@color/white"
                     android:textStyle="bold" />
 
                 <androidx.recyclerview.widget.RecyclerView
@@ -166,7 +174,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="UV index"
-                    android:textSize="20sp"/>
+                    android:textSize="20sp"
+                    android:textColor="@color/white"/>
 
                 <TextView
                     android:id="@+id/uvIndexDegree"
@@ -174,7 +183,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="UV degree"
-                    android:textSize="16sp"/>
+                    android:textSize="16sp"
+                    android:textColor="#88FFFFFF"/>
 
             </LinearLayout>
 
@@ -203,7 +213,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Humidity"
-                    android:textSize="20sp"/>
+                    android:textSize="20sp"
+                    android:textColor="@color/white"/>
 
                 <TextView
                     android:id="@+id/humidityDegree"
@@ -211,7 +222,8 @@
                     android:layout_height="wrap_content"
                     android:layout_margin="6dp"
                     android:text="Humidity deg"
-                    android:textSize="16sp"/>
+                    android:textSize="16sp"
+                    android:textColor="#88FFFFFF"/>
 
             </LinearLayout>
 
@@ -234,6 +246,61 @@
                     android:layout_margin="10dp"
                     android:src="@drawable/wind2"/>
 
+                <TextView
+                    android:id="@+id/windText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Wind"
+                    android:textSize="20sp"
+                    android:textColor="@color/white"/>
+
+                <TextView
+                    android:id="@+id/windDegree"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="6dp"
+                    android:text="Humidity deg"
+                    android:textSize="16sp"
+                    android:textColor="#88FFFFFF"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/feelsLikeLinearLayout"
+                android:layout_width="160dp"
+                android:layout_height="160dp"
+                android:layout_below="@+id/windLinearLayout"
+                android:layout_alignTop="@+id/windLinearLayout"
+                android:layout_alignEnd="@+id/humidityLinearLayout"
+                android:layout_marginStart="0dp"
+                android:layout_marginTop="0dp"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:background="@drawable/shape">
+
+                <ImageView
+                    android:id="@+id/feelsLikeIcon"
+                    android:layout_width="47dp"
+                    android:layout_height="47dp"
+                    android:layout_margin="10dp"
+                    android:src="@drawable/temperature"/>
+
+                <TextView
+                    android:id="@+id/feelsLikeText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Feels Like"
+                    android:textSize="20sp"
+                    android:textColor="@color/white"/>
+
+                <TextView
+                    android:id="@+id/feelsLikeDegree"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="6dp"
+                    android:text="Feelslike deg"
+                    android:textSize="16sp"
+                    android:textColor="#88FFFFFF"/>
 
             </LinearLayout>
 
