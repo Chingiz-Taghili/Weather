@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".view.MainActivity"
-    android:background="#0084BF">
+    android:background="@drawable/day_background">
 
     <ProgressBar
         android:id="@+id/progress_bar"
@@ -22,21 +22,31 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="55dp"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="27dp"
         android:text="Name"
         android:textSize="40sp"
         android:textColor="@color/white"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <ImageView
+        android:id="@+id/locationImage"
+        android:layout_width="17dp"
+        android:layout_height="29dp"
+        android:layout_marginStart="5dp"
+        android:layout_marginBottom="10dp"
+        android:src="@drawable/location"
+        app:layout_constraintBottom_toBottomOf="@+id/nameText"
+        app:layout_constraintStart_toEndOf="@+id/nameText" />
+
     <TextView
         android:id="@+id/currentTemperaturText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="25dp"
-        android:layout_marginTop="15dp"
+        android:layout_marginStart="23dp"
+        android:layout_marginTop="11dp"
         android:text="C"
-        android:textSize="69sp"
+        android:textSize="70sp"
         android:textColor="@color/white"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/nameText" />
@@ -45,7 +55,7 @@
         android:id="@+id/dailyMaxMinTemp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="12dp"
+        android:layout_marginStart="10dp"
         android:layout_marginTop="19dp"
         android:text="max/min"
         android:textSize="16sp"
@@ -67,19 +77,18 @@
         android:id="@+id/currentIcon"
         android:layout_width="122dp"
         android:layout_height="0dp"
-        android:layout_marginTop="-16dp"
-        android:layout_marginEnd="13dp"
+        android:layout_marginTop="-18dp"
+        android:layout_marginEnd="11dp"
         android:layout_marginBottom="-14dp"
         app:layout_constraintBottom_toBottomOf="@+id/currentTemperaturText"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/currentTemperaturText"
-        app:srcCompat="@drawable/ic_launcher_background" />
+        app:layout_constraintTop_toTopOf="@+id/currentTemperaturText"/>
 
     <ScrollView
         android:id="@+id/scrollView"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="12dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -94,10 +103,10 @@
                 android:id="@+id/saatliqLinearLayout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="20dp"
-                android:layout_marginRight="20dp"
-                android:layout_marginTop="10dp"
-                android:background="@drawable/shape"
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="15dp"
+                android:layout_marginTop="13dp"
+                android:background="@drawable/list_night_background"
                 android:orientation="vertical">
 
                 <TextView
@@ -124,12 +133,12 @@
                 android:id="@+id/gunlukLinearLayout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="20dp"
-                android:layout_marginRight="20dp"
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="15dp"
                 android:orientation="vertical"
                 android:layout_below="@+id/saatliqLinearLayout"
-                android:layout_marginTop="25dp"
-                android:background="@drawable/shape">
+                android:layout_marginTop="15dp"
+                android:background="@drawable/list_night_background">
 
                 <TextView
                     android:layout_width="match_parent"
@@ -151,132 +160,16 @@
             </LinearLayout>
 
             <LinearLayout
-                android:id="@+id/uvIndexLinearLayout"
+                android:id="@+id/feelsLikeLinearLayout"
                 android:layout_width="160dp"
                 android:layout_height="160dp"
                 android:layout_below="@+id/gunlukLinearLayout"
                 android:layout_alignStart="@+id/gunlukLinearLayout"
                 android:layout_marginStart="0dp"
-                android:layout_marginTop="25dp"
+                android:layout_marginTop="15dp"
                 android:gravity="center"
                 android:orientation="vertical"
-                android:background="@drawable/shape">
-
-                <ImageView
-                    android:id="@+id/uvIndexIcon"
-                    android:layout_width="47dp"
-                    android:layout_height="47dp"
-                    android:layout_margin="10dp"
-                    android:src="@drawable/sun"/>
-
-                <TextView
-                    android:id="@+id/uvIndexText"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="UV index"
-                    android:textSize="20sp"
-                    android:textColor="@color/white"/>
-
-                <TextView
-                    android:id="@+id/uvIndexDegree"
-                    android:layout_margin="6dp"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="UV degree"
-                    android:textSize="16sp"
-                    android:textColor="#88FFFFFF"/>
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:id="@+id/humidityLinearLayout"
-                android:layout_width="160dp"
-                android:layout_height="160dp"
-                android:layout_below="@+id/uvIndexLinearLayout"
-                android:layout_alignTop="@+id/uvIndexLinearLayout"
-                android:layout_alignEnd="@+id/gunlukLinearLayout"
-                android:layout_marginStart="0dp"
-                android:layout_marginTop="0dp"
-                android:gravity="center"
-                android:orientation="vertical"
-                android:background="@drawable/shape">
-
-                <ImageView
-                    android:id="@+id/humidityIcon"
-                    android:layout_width="47dp"
-                    android:layout_height="47dp"
-                    android:layout_margin="10dp"
-                    android:src="@drawable/humidity"/>
-
-                <TextView
-                    android:id="@+id/humidityText"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Humidity"
-                    android:textSize="20sp"
-                    android:textColor="@color/white"/>
-
-                <TextView
-                    android:id="@+id/humidityDegree"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="6dp"
-                    android:text="Humidity deg"
-                    android:textSize="16sp"
-                    android:textColor="#88FFFFFF"/>
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:id="@+id/windLinearLayout"
-                android:layout_width="160dp"
-                android:layout_height="160dp"
-                android:background="@drawable/shape"
-                android:gravity="center"
-                android:orientation="vertical"
-                android:layout_below="@+id/uvIndexLinearLayout"
-                android:layout_alignStart="@+id/uvIndexLinearLayout"
-                android:layout_marginStart="0dp"
-                android:layout_marginTop="25dp">
-
-                <ImageView
-                    android:id="@+id/windIcon"
-                    android:layout_width="47dp"
-                    android:layout_height="47dp"
-                    android:layout_margin="10dp"
-                    android:src="@drawable/wind2"/>
-
-                <TextView
-                    android:id="@+id/windText"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Wind"
-                    android:textSize="20sp"
-                    android:textColor="@color/white"/>
-
-                <TextView
-                    android:id="@+id/windDegree"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="6dp"
-                    android:text="Humidity deg"
-                    android:textSize="16sp"
-                    android:textColor="#88FFFFFF"/>
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:id="@+id/feelsLikeLinearLayout"
-                android:layout_width="160dp"
-                android:layout_height="160dp"
-                android:layout_below="@+id/windLinearLayout"
-                android:layout_alignTop="@+id/windLinearLayout"
-                android:layout_alignEnd="@+id/humidityLinearLayout"
-                android:layout_marginStart="0dp"
-                android:layout_marginTop="0dp"
-                android:gravity="center"
-                android:orientation="vertical"
-                android:background="@drawable/shape">
+                android:background="@drawable/list_day_background">
 
                 <ImageView
                     android:id="@+id/feelsLikeIcon"
@@ -299,7 +192,199 @@
                     android:layout_height="wrap_content"
                     android:layout_margin="6dp"
                     android:text="Feelslike deg"
-                    android:textSize="16sp"
+                    android:textSize="19sp"
+                    android:textColor="#88FFFFFF"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/humidityLinearLayout"
+                android:layout_width="160dp"
+                android:layout_height="160dp"
+                android:layout_below="@+id/feelsLikeLinearLayout"
+                android:layout_alignTop="@+id/feelsLikeLinearLayout"
+                android:layout_alignEnd="@+id/gunlukLinearLayout"
+                android:layout_marginStart="0dp"
+                android:layout_marginTop="0dp"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:background="@drawable/list_day_background">
+
+                <ImageView
+                    android:id="@+id/humidityIcon"
+                    android:layout_width="47dp"
+                    android:layout_height="47dp"
+                    android:layout_margin="10dp"
+                    android:src="@drawable/humidity"/>
+
+                <TextView
+                    android:id="@+id/humidityText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Humidity"
+                    android:textSize="20sp"
+                    android:textColor="@color/white"/>
+
+                <TextView
+                    android:id="@+id/humidityDegree"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="6dp"
+                    android:text="Humidity deg"
+                    android:textSize="19sp"
+                    android:textColor="#88FFFFFF"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/uvIndexLinearLayout"
+                android:layout_width="160dp"
+                android:layout_height="160dp"
+                android:background="@drawable/list_night_background"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:layout_below="@+id/feelsLikeLinearLayout"
+                android:layout_alignStart="@+id/feelsLikeLinearLayout"
+                android:layout_marginStart="0dp"
+                android:layout_marginTop="15dp">
+
+                <ImageView
+                    android:id="@+id/uvIndexIcon"
+                    android:layout_width="47dp"
+                    android:layout_height="47dp"
+                    android:layout_margin="10dp"
+                    android:src="@drawable/sun"/>
+
+                <TextView
+                    android:id="@+id/uvIndexText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="UV index"
+                    android:textSize="20sp"
+                    android:textColor="@color/white"/>
+
+                <TextView
+                    android:id="@+id/uvIndexDegree"
+                    android:layout_margin="6dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="UV degree"
+                    android:textSize="18sp"
+                    android:textColor="#88FFFFFF"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/windLinearLayout"
+                android:layout_width="160dp"
+                android:layout_height="160dp"
+                android:layout_below="@+id/uvIndexLinearLayout"
+                android:layout_alignTop="@+id/uvIndexLinearLayout"
+                android:layout_alignEnd="@+id/humidityLinearLayout"
+                android:layout_marginStart="0dp"
+                android:layout_marginTop="0dp"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:background="@drawable/list_night_background">
+
+                <ImageView
+                    android:id="@+id/windIcon"
+                    android:layout_width="47dp"
+                    android:layout_height="47dp"
+                    android:layout_margin="10dp"
+                    android:src="@drawable/wind2"/>
+
+                <TextView
+                    android:id="@+id/windText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Wind"
+                    android:textSize="20sp"
+                    android:textColor="@color/white"/>
+
+                <TextView
+                    android:id="@+id/windDegree"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="6dp"
+                    android:text="Humidity deg"
+                    android:textSize="18sp"
+                    android:textColor="#88FFFFFF"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/sunriseLinearLayout"
+                android:layout_width="160dp"
+                android:layout_height="160dp"
+                android:background="@drawable/list_night_background"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:layout_below="@+id/uvIndexLinearLayout"
+                android:layout_alignStart="@+id/uvIndexLinearLayout"
+                android:layout_marginStart="0dp"
+                android:layout_marginTop="15dp"
+                android:layout_marginBottom="19dp">
+
+                <ImageView
+                    android:id="@+id/sunriseIcon"
+                    android:layout_width="47dp"
+                    android:layout_height="47dp"
+                    android:layout_margin="10dp"/>
+
+                <TextView
+                    android:id="@+id/sunriseText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Sunrise"
+                    android:textSize="20sp"
+                    android:textColor="@color/white"/>
+
+                <TextView
+                    android:id="@+id/sunriseTime"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="6dp"
+                    android:text="Sunrise t"
+                    android:textSize="18sp"
+                    android:textColor="#88FFFFFF"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/sunsetLinearlayout"
+                android:layout_width="160dp"
+                android:layout_height="160dp"
+                android:background="@drawable/list_night_background"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:layout_below="@+id/sunriseLinearLayout"
+                android:layout_alignTop="@+id/sunriseLinearLayout"
+                android:layout_alignEnd="@+id/windLinearLayout"
+                android:layout_marginStart="0dp"
+                android:layout_marginTop="0dp">
+
+                <ImageView
+                    android:id="@+id/sunsetIcon"
+                    android:layout_width="47dp"
+                    android:layout_height="47dp"
+                    android:layout_margin="10dp"/>
+
+                <TextView
+                    android:id="@+id/sunsetText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Sunset"
+                    android:textSize="20sp"
+                    android:textColor="@color/white"/>
+
+                <TextView
+                    android:id="@+id/sunsetTime"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="6dp"
+                    android:text="Sunset t"
+                    android:textSize="18sp"
                     android:textColor="#88FFFFFF"/>
 
             </LinearLayout>

@@ -7,6 +7,7 @@ import android.view.View
 import android.widget.Toast
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.bumptech.glide.Glide
 import com.cingiztagili.weather.adapter.GunlukAdapter
 import com.cingiztagili.weather.adapter.SaatliqAdapter
 import com.cingiztagili.weather.databinding.ActivityMainBinding
@@ -20,6 +21,9 @@ import io.reactivex.rxjava3.schedulers.Schedulers
 import retrofit2.Retrofit
 import retrofit2.adapter.rxjava3.RxJava3CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
+import java.sql.Time
+import java.util.Calendar
+import java.util.Date
 import kotlin.math.roundToInt
 
 class MainActivity : AppCompatActivity() {
@@ -92,6 +96,10 @@ class MainActivity : AppCompatActivity() {
             binding.gunlukRecyclerView.adapter = GunlukAdapter(it.forecast.gunluk_proqnoz)
 
 
+            binding.feelsLikeDegree.text = "${it.current.real_hissetme.roundToInt()}°"
+
+            binding.humidityDegree.text = "${it.current.rutubet}%"
+
             var uvIndexDegree = "Low"
             if (it.current.uv_indeksi.roundToInt() >= 3 && it.current.uv_indeksi.roundToInt() <= 5) {
                 uvIndexDegree = "Moderate"
@@ -104,12 +112,16 @@ class MainActivity : AppCompatActivity() {
             }
             binding.uvIndexDegree.text = uvIndexDegree
 
-
-            binding.humidityDegree.text = "${it.current.rutubet}%"
-
             binding.windDegree.text = "${it.current.kuleyin_sureti.roundToInt()} km/h"
 
-            binding.feelsLikeDegree.text = "${it.current.real_hissetme.roundToInt()}°"
+            binding.sunriseTime.text = it.forecast.gunluk_proqnoz.get(0).astronomik.sefeq
+
+            binding.sunsetTime.text = it.forecast.gunluk_proqnoz.get(0).astronomik.qurub
+
+            Glide.with(this).asGif().load("https://i.pinimg.com/originals/9d/72/5f/9d725fe7ec601fb2744d8d704f402a10.gif").into(binding.sunriseIcon)
+            //https://usagif.com/wp-content/uploads/gifs/sun-58.gif
+            //https://i.pinimg.com/originals/9d/72/5f/9d725fe7ec601fb2744d8d704f402a10.gif
+            Glide.with(this).asGif().load("https://media.tenor.com/-RNOB5xDZ5gAAAAC/sunset.gif").into(binding.sunsetIcon)
         }
     }
 
