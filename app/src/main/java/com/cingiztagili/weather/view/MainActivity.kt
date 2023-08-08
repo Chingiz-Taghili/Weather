@@ -1,19 +1,24 @@
 package com.cingiztagili.weather.view
 
 import android.opengl.Visibility
+import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
+import android.view.Window
+import android.view.WindowManager
 import android.widget.Toast
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
+import com.cingiztagili.weather.R
 import com.cingiztagili.weather.adapter.GunlukAdapter
 import com.cingiztagili.weather.adapter.SaatliqAdapter
 import com.cingiztagili.weather.databinding.ActivityMainBinding
 import com.cingiztagili.weather.model.HerSaatUcun
 import com.cingiztagili.weather.model.Model
 import com.cingiztagili.weather.service.ServiceAPI
+import com.google.android.material.elevation.SurfaceColors
 import com.squareup.picasso.Picasso
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.disposables.CompositeDisposable
@@ -37,6 +42,14 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         val view = binding.root
         setContentView(view)
+
+
+        if (Build.VERSION.SDK_INT >= 21) {
+            val window = this.window
+            window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS)
+            window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS)
+            window.statusBarColor = this.resources.getColor(R.color.blue)
+        }
 
         compositeDisposable = CompositeDisposable()
 
@@ -94,6 +107,7 @@ class MainActivity : AppCompatActivity() {
 
             binding.gunlukRecyclerView.layoutManager = LinearLayoutManager(this)
             binding.gunlukRecyclerView.adapter = GunlukAdapter(it.forecast.gunluk_proqnoz)
+            binding.gunlukRecyclerView.isNestedScrollingEnabled = false
 
 
             binding.feelsLikeDegree.text = "${it.current.real_hissetme.roundToInt()}°"
