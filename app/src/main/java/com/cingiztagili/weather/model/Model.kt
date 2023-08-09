@@ -26,7 +26,7 @@ data class Location(
 
 data class Current(
     @SerializedName("last_updated")
-    val son_yenilenme: String,
+    val son_yenilenme: String, //"2023-08-09 14:00"
     @SerializedName("temp_c")
     val temperatur: Double,
     @SerializedName("condition")
