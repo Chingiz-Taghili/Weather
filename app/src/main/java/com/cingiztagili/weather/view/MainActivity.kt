@@ -2,15 +2,14 @@ package com.cingiztagili.weather.view
 
 import android.os.Build
 import android.os.Bundle
-import android.view.Gravity
 import android.view.MenuItem
 import android.view.View
 import android.view.WindowManager
+import android.widget.ImageView
 import android.widget.Toast
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AppCompatActivity
-import androidx.appcompat.widget.ActionBarContainer
-import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
@@ -20,6 +19,7 @@ import com.cingiztagili.weather.adapter.SaatliqAdapter
 import com.cingiztagili.weather.databinding.ActivityMainBinding
 import com.cingiztagili.weather.model.Model
 import com.cingiztagili.weather.service.ServiceAPI
+import com.google.android.material.navigation.NavigationView
 import com.squareup.picasso.Picasso
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.disposables.CompositeDisposable
@@ -27,7 +27,6 @@ import io.reactivex.rxjava3.schedulers.Schedulers
 import retrofit2.Retrofit
 import retrofit2.adapter.rxjava3.RxJava3CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
-import java.time.LocalDate
 import java.time.LocalDateTime
 import java.time.LocalTime
 import java.time.format.DateTimeFormatter
@@ -39,9 +38,12 @@ class MainActivity : AppCompatActivity() {
 
     private var compositeDisposable: CompositeDisposable? = null
 
+    private lateinit var imageButton: ImageView
 
     lateinit var drawerLayout: DrawerLayout
     lateinit var actionBarDrawerToggle: ActionBarDrawerToggle
+    lateinit var navigationView: NavigationView
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -60,10 +62,20 @@ class MainActivity : AppCompatActivity() {
 
         //Navigation view-i tanidiriq:
         drawerLayout = binding.drawerLayout
-        actionBarDrawerToggle = ActionBarDrawerToggle(this, drawerLayout, R.string.nav_open, R.string.nav_close)
+        actionBarDrawerToggle =
+            ActionBarDrawerToggle(this, drawerLayout, R.string.nav_open, R.string.nav_close)
         drawerLayout.addDrawerListener(actionBarDrawerToggle)
         actionBarDrawerToggle.syncState()
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
+
+
+        navigationItemSelect()
+
+
+        imageButton = binding.menuButton
+        imageButton.setOnClickListener {
+            drawerLayout.openDrawer(GravityCompat.START)
+        }
 
 
         compositeDisposable = CompositeDisposable()
@@ -72,8 +84,23 @@ class MainActivity : AppCompatActivity() {
     }
 
 
-    private fun menuButtonClicked(view: View) {
-        drawerLayout.openDrawer(Gravity.LEFT)
+    private fun navigationItemSelect() {
+        navigationView = binding.NavigationView
+        if (navigationView != null) {
+            navigationView.setNavigationItemSelectedListener {
+                if (it.itemId == R.id.Baku) {
+                    println("Baku selected")
+                } else if (it.itemId == R.id.Ucar) {
+                    println("Ucar selected")
+                } else if (it.itemId == R.id.inEnglish) {
+                    println("English selected")
+                } else if (it.itemId == R.id.inTurkish) {
+                    println("Turkish selected")
+                }
+
+                return@setNavigationItemSelectedListener true
+            }
+        }
     }
 
 
@@ -107,6 +134,8 @@ class MainActivity : AppCompatActivity() {
     private fun handleResponse(weather: Model) {
         weather.let {
             binding.progressBar.visibility = View.GONE
+
+            binding.menuButton.visibility = View.VISIBLE
 
             binding.nameText.visibility = View.VISIBLE
             binding.nameText.text = it.location.menteqe
@@ -176,15 +205,14 @@ class MainActivity : AppCompatActivity() {
                 .into(binding.sunsetIcon)
 
 
-             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-                 val APIupdateTime = LocalDateTime.parse(
-                     it.current.son_yenilenme,
-                     DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm") //"2023-08-09 14:00"
-                 )
-                 val updatedTime = DateTimeFormatter.ofPattern("dd.MM HH:mm").format(APIupdateTime)
-                 binding.lastUpdatedTime.text = "Updated: ${updatedTime}"
-             }
-
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                val APIupdateTime = LocalDateTime.parse(
+                    it.current.son_yenilenme,
+                    DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm") //"2023-08-09 14:00"
+                )
+                val updatedTime = DateTimeFormatter.ofPattern("dd.MM HH:mm").format(APIupdateTime)
+                binding.lastUpdatedTime.text = "Updated: ${updatedTime}"
+            }
 
 
             //App-in background-unu gundelik vaxta uygunlasdiririq:
@@ -215,6 +243,7 @@ class MainActivity : AppCompatActivity() {
                     binding.windLinearLayout.setBackgroundResource(listDayBackground)
                     binding.sunriseLinearLayout.setBackgroundResource(listDayBackground)
                     binding.sunsetLinearlayout.setBackgroundResource(listDayBackground)
+                    binding.NavigationView.setBackgroundResource(R.drawable.navigation_day_background)
                 } else {
                     window.statusBarColor = this.getColor(R.color.night)
                     val listNightBackground = R.drawable.list_night_background
@@ -227,6 +256,7 @@ class MainActivity : AppCompatActivity() {
                     binding.windLinearLayout.setBackgroundResource(listNightBackground)
                     binding.sunriseLinearLayout.setBackgroundResource(listNightBackground)
                     binding.sunsetLinearlayout.setBackgroundResource(listNightBackground)
+                    binding.NavigationView.setBackgroundResource(R.drawable.navigation_night_background)
                 }
             }
 

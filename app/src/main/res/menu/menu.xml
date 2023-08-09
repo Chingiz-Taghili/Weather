@@ -1,13 +1,42 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:ignore="HardcodedText">
 
     <item
         android:id="@+id/change_location"
-        android:title="Location" />
+        android:title="Location">
+
+        <menu>
+
+            <item
+                android:id="@+id/Baku"
+                android:title="Baku" />
+
+            <item
+                android:id="@+id/Ucar"
+                android:title="Ucar"/>
+
+        </menu>
+
+    </item>
 
     <item
         android:id="@+id/change_language"
-        android:title="Language" />
+        android:title="Language" >
+
+        <menu>
+
+            <item
+                android:id="@+id/inEnglish"
+                android:title="English"/>
+
+            <item
+                android:id="@+id/inTurkish"
+                android:title="Türkçe"/>
+
+        </menu>
+
+    </item>
 </menu>

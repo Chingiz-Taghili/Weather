@@ -29,24 +29,25 @@
             android:id="@+id/menuButton"
             android:layout_width="22dp"
             android:layout_height="24dp"
-            android:layout_marginEnd="11dp"
+            android:layout_marginEnd="15dp"
             android:layout_marginBottom="12dp"
-            android:onClick="menuButtonClicked"
             android:src="@drawable/menu"
             app:layout_constraintBottom_toBottomOf="@+id/nameText"
-            app:layout_constraintEnd_toStartOf="@+id/nameText" />
+            app:layout_constraintEnd_toStartOf="@+id/nameText"
+            android:visibility="gone"/>
 
         <TextView
             android:id="@+id/nameText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="62dp"
+            android:layout_marginStart="65dp"
             android:layout_marginTop="27dp"
             android:text="Name"
             android:textColor="@color/white"
             android:textSize="40sp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            android:visibility="gone"/>
 
         <ImageView
             android:id="@+id/locationImage"
@@ -56,7 +57,8 @@
             android:layout_marginBottom="10dp"
             android:src="@drawable/location"
             app:layout_constraintBottom_toBottomOf="@+id/nameText"
-            app:layout_constraintStart_toEndOf="@+id/nameText" />
+            app:layout_constraintStart_toEndOf="@+id/nameText"
+            android:visibility="gone"/>
 
         <TextView
             android:id="@+id/currentTemperaturText"
@@ -68,7 +70,8 @@
             android:textColor="@color/white"
             android:textSize="70sp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/nameText" />
+            app:layout_constraintTop_toBottomOf="@+id/nameText"
+            android:visibility="gone"/>
 
         <TextView
             android:id="@+id/dailyMaxMinTemp"
@@ -80,7 +83,8 @@
             android:textColor="@color/white"
             android:textSize="16sp"
             app:layout_constraintStart_toEndOf="@+id/currentTemperaturText"
-            app:layout_constraintTop_toTopOf="@+id/currentTemperaturText" />
+            app:layout_constraintTop_toTopOf="@+id/currentTemperaturText"
+            android:visibility="gone"/>
 
         <TextView
             android:id="@+id/currentConditionText"
@@ -90,7 +94,8 @@
             android:textColor="@color/white"
             android:textSize="24sp"
             app:layout_constraintStart_toStartOf="@+id/dailyMaxMinTemp"
-            app:layout_constraintTop_toBottomOf="@+id/dailyMaxMinTemp" />
+            app:layout_constraintTop_toBottomOf="@+id/dailyMaxMinTemp"
+            android:visibility="gone"/>
 
         <ImageView
             android:id="@+id/currentIcon"
@@ -101,7 +106,8 @@
             android:layout_marginBottom="-14dp"
             app:layout_constraintBottom_toBottomOf="@+id/currentTemperaturText"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/currentTemperaturText" />
+            app:layout_constraintTop_toTopOf="@+id/currentTemperaturText"
+            android:visibility="gone"/>
 
         <ScrollView
             android:id="@+id/scrollView"
@@ -111,7 +117,8 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/currentTemperaturText">
+            app:layout_constraintTop_toBottomOf="@+id/currentTemperaturText"
+            android:visibility="gone">
 
 
             <RelativeLayout
