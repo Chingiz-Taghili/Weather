@@ -136,6 +136,7 @@
                     android:orientation="vertical">
 
                     <TextView
+                        android:id="@+id/hourlyForecastText"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="7dp"
@@ -167,6 +168,7 @@
                     android:orientation="vertical">
 
                     <TextView
+                        android:id="@+id/weeklyForecastText"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="7dp"
@@ -421,6 +423,20 @@
                 </LinearLayout>
 
                 <TextView
+                    android:id="@+id/lastUpdatedText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/sunsetLinearlayout"
+                    android:layout_toLeftOf="@+id/lastUpdatedTime"
+                    android:layout_marginTop="15dp"
+                    android:layout_marginEnd="0dp"
+                    android:layout_marginBottom="19dp"
+                    android:text="Updated: "
+                    android:textColor="#88FFFFFF"
+                    android:textSize="15sp"
+                    android:textStyle="bold" />
+
+                <TextView
                     android:id="@+id/lastUpdatedTime"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -429,7 +445,7 @@
                     android:layout_marginTop="15dp"
                     android:layout_marginEnd="5dp"
                     android:layout_marginBottom="19dp"
-                    android:text="last updated time"
+                    android:text="Updated time"
                     android:textColor="#88FFFFFF"
                     android:textSize="15sp"
                     android:textStyle="bold" />

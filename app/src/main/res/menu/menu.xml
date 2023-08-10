@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     tools:ignore="HardcodedText">
 
     <item
@@ -16,7 +16,11 @@
 
             <item
                 android:id="@+id/Ucar"
-                android:title="Ucar"/>
+                android:title="Ucar" />
+
+            <item
+                android:id="@+id/Agsu"
+                android:title="Agsu" />
 
         </menu>
 
@@ -24,17 +28,21 @@
 
     <item
         android:id="@+id/change_language"
-        android:title="Language" >
+        android:title="Language">
 
         <menu>
 
             <item
                 android:id="@+id/inEnglish"
-                android:title="English"/>
+                android:title="English" />
 
             <item
                 android:id="@+id/inTurkish"
-                android:title="Türkçe"/>
+                android:title="Türkçe" />
+
+            <item
+                android:id="@+id/inRussian"
+                android:title="Русский" />
 
         </menu>
 

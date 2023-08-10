@@ -1,5 +1,7 @@
 package com.cingiztagili.weather.view
 
+import android.content.Intent
+import android.content.SharedPreferences
 import android.os.Build
 import android.os.Bundle
 import android.view.MenuItem
@@ -35,10 +37,17 @@ import kotlin.math.roundToInt
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
     private val BASE_URL = "https://api.weatherapi.com/"
-
+    private val keyQuery = "bd64a2ded339460d9b364123230208"
+    private var locationQuery = "Baku"
+    private val daysQuery = 7
+    private val aqiQuery = "yes"
+    private val alertsQuery = "yes"
+    private var languageQuery = "en"
+    private lateinit var sharedPreferences: SharedPreferences
     private var compositeDisposable: CompositeDisposable? = null
 
     private lateinit var imageButton: ImageView
+
 
     lateinit var drawerLayout: DrawerLayout
     lateinit var actionBarDrawerToggle: ActionBarDrawerToggle
@@ -69,6 +78,11 @@ class MainActivity : AppCompatActivity() {
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
 
+        sharedPreferences = this.getSharedPreferences("savedLastQueries", MODE_PRIVATE)
+        locationQuery = sharedPreferences.getString("locationQuery", "Baku")?: "Baku"
+        languageQuery = sharedPreferences.getString("languageQuery", "en")?: "en"
+
+
         navigationItemSelect()
 
 
@@ -89,16 +103,42 @@ class MainActivity : AppCompatActivity() {
         if (navigationView != null) {
             navigationView.setNavigationItemSelectedListener {
                 if (it.itemId == R.id.Baku) {
-                    println("Baku selected")
+                    locationQuery = "Baku"
                 } else if (it.itemId == R.id.Ucar) {
-                    println("Ucar selected")
+                    locationQuery = "Ucar"
+                } else if (it.itemId == R.id.Agsu) {
+                    locationQuery = "Agsu"
                 } else if (it.itemId == R.id.inEnglish) {
-                    println("English selected")
+                    languageQuery = "en"
+                    binding.hourlyForecastText.text = "Saatlik Tahmin"
+                    binding.weeklyForecastText.text = "Haftalık Tahmin"
+                    binding.feelsLikeText.text = "Gerçek Hissedilen"
+                    binding.humidityText.text = "Nem Oranı"
+                    binding.uvIndexText.text = "UV Endeksi"
+                    binding.windText.text = "Rüzgar"
+                    binding.sunriseText.text = "Gün Doğumu"
+                    binding.sunsetText.text = "Gün Batımı"
+                    binding.lastUpdatedText.text = "Güncellendi: "
                 } else if (it.itemId == R.id.inTurkish) {
-                    println("Turkish selected")
+                    languageQuery = "tr"
+                    binding.hourlyForecastText.text = "Saatlik Tahmin"
+                    binding.weeklyForecastText.text = "Haftalık Tahmin"
+                    binding.feelsLikeText.text = "Gerçek Hissedilen"
+                    binding.humidityText.text = "Nem Oranı"
+                    binding.uvIndexText.text = "UV Endeksi"
+                    binding.windText.text = "Rüzgar"
+                    binding.sunriseText.text = "Gün Doğumu"
+                    binding.sunsetText.text = "Gün Batımı"
+                    binding.lastUpdatedText.text = "Güncellendi: "
+                } else if (it.itemId == R.id.inRussian) {
+                    languageQuery = "ru"
                 }
+                sharedPreferences.edit().putString("locationQuery", locationQuery).apply()
+                sharedPreferences.edit().putString("languageQuery", languageQuery).apply()
+                finish()
+                startActivity(intent)
 
-                return@setNavigationItemSelectedListener true
+                return@setNavigationItemSelectedListener false
             }
         }
     }
@@ -119,7 +159,14 @@ class MainActivity : AppCompatActivity() {
             .build().create(ServiceAPI::class.java)
 
         compositeDisposable?.add(
-            retrofit.getData()
+            retrofit.getData(
+                keyQuery,
+                locationQuery,
+                daysQuery,
+                aqiQuery,
+                alertsQuery,
+                languageQuery
+            )
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .doOnError(this::handleError)
@@ -211,7 +258,7 @@ class MainActivity : AppCompatActivity() {
                     DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm") //"2023-08-09 14:00"
                 )
                 val updatedTime = DateTimeFormatter.ofPattern("dd.MM HH:mm").format(APIupdateTime)
-                binding.lastUpdatedTime.text = "Updated: ${updatedTime}"
+                binding.lastUpdatedTime.text = updatedTime
             }
 
 
