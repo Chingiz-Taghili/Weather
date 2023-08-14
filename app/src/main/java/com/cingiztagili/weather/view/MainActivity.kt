@@ -43,11 +43,17 @@ class MainActivity : AppCompatActivity() {
     private val aqiQuery = "yes"
     private val alertsQuery = "yes"
     private var languageQuery = "en"
+    private var hourlyForecastText = ""
+    private var weeklyForecastText = ""
+    private var feelsLikeText = ""
+    private var humidityText = ""
+    private var uvIndexText = ""
+    private var windText = ""
+    private var sunriseText = ""
+    private var sunsetText = ""
+    private var lastUpdatedText = ""
     private lateinit var sharedPreferences: SharedPreferences
     private var compositeDisposable: CompositeDisposable? = null
-
-    private lateinit var imageButton: ImageView
-
 
     lateinit var drawerLayout: DrawerLayout
     lateinit var actionBarDrawerToggle: ActionBarDrawerToggle
@@ -78,16 +84,36 @@ class MainActivity : AppCompatActivity() {
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
 
+        //SharedPreferences vasitesile kohne secimlerin yadda qalmasini temin edirik:
         sharedPreferences = this.getSharedPreferences("savedLastQueries", MODE_PRIVATE)
         locationQuery = sharedPreferences.getString("locationQuery", "Baku")?: "Baku"
         languageQuery = sharedPreferences.getString("languageQuery", "en")?: "en"
+        hourlyForecastText = sharedPreferences.getString("hourlyForecast", "Hourly Forecast")?: "Hourly Forecast"
+        weeklyForecastText = sharedPreferences.getString("weeklyForecast", "Weekly Forecast")?: "Weekly Forecast"
+        feelsLikeText = sharedPreferences.getString("feelsLike", "Feels Like")?: "Feels Like"
+        humidityText = sharedPreferences.getString("humidity", "Humidity")?: "Humidity"
+        uvIndexText = sharedPreferences.getString("uvIndex", "UV Index")?: "UV Index"
+        windText = sharedPreferences.getString("wind", "Wind")?: "Wind"
+        sunriseText = sharedPreferences.getString("sunrise", "Sunrise")?: "Sunrise"
+        sunsetText = sharedPreferences.getString("sunset", "Sunset")?: "Sunset"
+        lastUpdatedText = sharedPreferences.getString("lastUpdated", "Updated: ")?: "Updated: "
+        binding.hourlyForecastText.text = hourlyForecastText
+        binding.weeklyForecastText.text = weeklyForecastText
+        binding.feelsLikeText.text = feelsLikeText
+        binding.humidityText.text = humidityText
+        binding.uvIndexText.text = uvIndexText
+        binding.windText.text = windText
+        binding.sunriseText.text = sunriseText
+        binding.sunsetText.text = sunsetText
+        binding.lastUpdatedText.text = lastUpdatedText
 
 
         navigationItemSelect()
 
 
-        imageButton = binding.menuButton
-        imageButton.setOnClickListener {
+        //Menu buttonuna funksiya elave edirik:
+        val menuButton = binding.menuButton
+        menuButton.setOnClickListener {
             drawerLayout.openDrawer(GravityCompat.START)
         }
 
@@ -110,31 +136,49 @@ class MainActivity : AppCompatActivity() {
                     locationQuery = "Agsu"
                 } else if (it.itemId == R.id.inEnglish) {
                     languageQuery = "en"
-                    binding.hourlyForecastText.text = "Saatlik Tahmin"
-                    binding.weeklyForecastText.text = "Haftalık Tahmin"
-                    binding.feelsLikeText.text = "Gerçek Hissedilen"
-                    binding.humidityText.text = "Nem Oranı"
-                    binding.uvIndexText.text = "UV Endeksi"
-                    binding.windText.text = "Rüzgar"
-                    binding.sunriseText.text = "Gün Doğumu"
-                    binding.sunsetText.text = "Gün Batımı"
-                    binding.lastUpdatedText.text = "Güncellendi: "
+                    hourlyForecastText = "Hourly Forecast"
+                    weeklyForecastText = "Weekly Forecast"
+                    feelsLikeText = "Feels Like"
+                    humidityText = "Humidity"
+                    uvIndexText = "UV Index"
+                    windText = "Wind"
+                    sunriseText = "Sunrise"
+                    sunsetText = "Sunset"
+                    lastUpdatedText = "Updated: "
                 } else if (it.itemId == R.id.inTurkish) {
                     languageQuery = "tr"
-                    binding.hourlyForecastText.text = "Saatlik Tahmin"
-                    binding.weeklyForecastText.text = "Haftalık Tahmin"
-                    binding.feelsLikeText.text = "Gerçek Hissedilen"
-                    binding.humidityText.text = "Nem Oranı"
-                    binding.uvIndexText.text = "UV Endeksi"
-                    binding.windText.text = "Rüzgar"
-                    binding.sunriseText.text = "Gün Doğumu"
-                    binding.sunsetText.text = "Gün Batımı"
-                    binding.lastUpdatedText.text = "Güncellendi: "
+                    hourlyForecastText = "Saatlik Tahmin"
+                    weeklyForecastText = "Haftalık Tahmin"
+                    feelsLikeText = "Gerçek Hissedilen"
+                    humidityText = "Nem Oranı"
+                    uvIndexText = "UV Endeksi"
+                    windText = "Rüzgar"
+                    sunriseText = "Gün Doğumu"
+                    sunsetText = "Gün Batımı"
+                    lastUpdatedText = "Güncellendi: "
                 } else if (it.itemId == R.id.inRussian) {
                     languageQuery = "ru"
+                    hourlyForecastText = "Почасовой прогноз"
+                    weeklyForecastText = "Еженедельный прогноз"
+                    feelsLikeText = "Как будто"
+                    humidityText = "Влажность"
+                    uvIndexText = "УФ индекс"
+                    windText = "Ветер"
+                    sunriseText = "Восход"
+                    sunsetText = "Закат"
+                    lastUpdatedText = "Обновлено: "
                 }
                 sharedPreferences.edit().putString("locationQuery", locationQuery).apply()
                 sharedPreferences.edit().putString("languageQuery", languageQuery).apply()
+                sharedPreferences.edit().putString("hourlyForecast", hourlyForecastText).apply()
+                sharedPreferences.edit().putString("weeklyForecast", weeklyForecastText).apply()
+                sharedPreferences.edit().putString("feelsLike", feelsLikeText).apply()
+                sharedPreferences.edit().putString("humidity", humidityText).apply()
+                sharedPreferences.edit().putString("uvIndex", uvIndexText).apply()
+                sharedPreferences.edit().putString("wind", windText).apply()
+                sharedPreferences.edit().putString("sunrise", sunriseText).apply()
+                sharedPreferences.edit().putString("sunset", sunsetText).apply()
+                sharedPreferences.edit().putString("lastUpdated", lastUpdatedText).apply()
                 finish()
                 startActivity(intent)
 
